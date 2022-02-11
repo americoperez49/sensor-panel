@@ -13,6 +13,7 @@ import { TextComponent } from './components/text/text.component';
 
 //directives
 import { FontStyleDirective } from './directives/fontstyle.directive';
+import { NewGaugeComponent } from './components/new-gauge/new-gauge.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { FontStyleDirective } from './directives/fontstyle.directive';
     GaugeComponent,
     TextComponent,
     FontStyleDirective,
+    NewGaugeComponent,
   ],
   imports: [
     BrowserModule,

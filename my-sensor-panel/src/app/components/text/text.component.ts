@@ -3,7 +3,6 @@ import {CdkDragMove,CdkDragRelease ,DragRef,DragDrop, Point} from '@angular/cdk/
 import { Coordinates } from "../../interfaces/Coordinates";
 import { LocationsService } from 'src/app/services/locations.service';
 import { DataService } from 'src/app/services/data.service';
-import { convertUpdateArguments } from '@angular/compiler/src/compiler_util/expression_converter';
 import { Subscription } from 'rxjs';
 
 

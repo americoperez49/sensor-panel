@@ -1,1 +1,10 @@
-<p  #moveableGauge class="bringToFront"  cdkDrag (cdkDragReleased)="released($event)" (cdkDragMoved)="moved($event)">gauge works!</p>
+<!-- <p  #moveableGauge class="bringToFront"  cdkDrag (cdkDragReleased)="released($event)" (cdkDragMoved)="moved($event)">gauge works!</p> -->
+<apx-chart
+#moveableGauge class="bringToFront"  cdkDrag (cdkDragReleased)="released($event)" (cdkDragMoved)="moved($event)"
+      [series]="chartOptions.series!"
+      [chart]="chartOptions.chart!"
+      [plotOptions]="chartOptions.plotOptions!"
+      [labels]="chartOptions.labels!"
+      [stroke]="chartOptions.stroke!"
+      [fill]="chartOptions.fill!"
+    ></apx-chart>

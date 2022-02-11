@@ -1,0 +1,34 @@
+<!-- <div #moveableText class="bringToFront"  cdkDrag (cdkDragReleased)="released($event)" (cdkDragMoved)="moved($event)"><ng-content></ng-content>{{value}} {{units}}</div> -->
+
+<div  #moveableGauge class="bringToFront"  cdkDrag (cdkDragReleased)="released($event)" (cdkDragMoved)="moved($event)">
+    <div class="bringToFront">
+        <apx-chart
+          [series]="chartOptions.series!"
+          [chart]="chartOptions.chart!"
+          [plotOptions]="chartOptions.plotOptions!"
+          [labels]="chartOptions.labels!"
+          [stroke]="chartOptions.stroke!"
+          [fill]="chartOptions.fill!"
+        ></apx-chart>
+    </div>
+    <div class="bringToFront">
+        <apx-chart
+        [series]="innerRing.series!"
+        [chart]="innerRing.chart!"
+        [plotOptions]="innerRing.plotOptions!"
+        [labels]="innerRing.labels!"
+        [stroke]="innerRing.stroke!"
+        [fill]="innerRing.fill!"
+      ></apx-chart>
+    </div>  
+    <div class="bringToFront">
+      <apx-chart
+      [series]="outerRing.series!"
+      [chart]="outerRing.chart!"
+      [plotOptions]="outerRing.plotOptions!"
+      [labels]="outerRing.labels!"
+      [stroke]="outerRing.stroke!"
+      [fill]="outerRing.fill!"
+    ></apx-chart>
+  </div>  
+</div>
