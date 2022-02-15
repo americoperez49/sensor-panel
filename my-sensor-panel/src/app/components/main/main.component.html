@@ -1,31 +1,32 @@
 
 
-    <app-text #moveableComponent [sensor]="'Date'" [id]="'1'" appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
-
-    <app-text #moveableComponent [sensor]="'Time'"[id]="'2'" appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
-
-    <app-text #moveableComponent [sensor]="'Desktop Resolution'"[id]="'3'" appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
-
-
-    <app-text #moveableComponent [sensor]="'Vertical Refresh Rate'"[id]="'4'" appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
-
-
-    <app-text #moveableComponent [sensor]="'RTSS FPS'"[id]="'5'" appFontstyle  [color]="'white'" [fontSize]="'30px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
-
-
-    <app-text #moveableComponent [sensor]="" [id]="'7'" appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'">d:</app-text>
-    <app-text #moveableComponent [sensor]="'NIC3 Download Rate'"[id]="'8'" appFontstyle  [color]="'yellow'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
-
-    <app-text #moveableComponent [sensor]="" [id]="'9'" appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'">u:</app-text>
-    <app-text #moveableComponent [sensor]="'NIC3 Upload Rate'"[id]="'10'" appFontstyle  [color]="'aqua'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
     
-    <app-text #moveableComponent [sensor]="'Master Volume'"[id]="'11'" appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
-    
-    <app-new-gauge #moveableComponent [sensor]="'Master Volume'"[id]="'12'" appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-new-gauge>
+    <app-text  appMoveableObject [id]="'1'" [sensor]="'Date'"  appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
 
-<!-- <div>
-    <app-gauge #moveableComponent [id]="'12'" appFontstyle  [color]="'red'" [fontSize]="'50px'" [fontFamily]="'Unispace, sans-serif'">Gauge</app-gauge>
-</div> -->
+    <app-text  appMoveableObject [id]="'2'" [sensor]="'Time'" appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
+
+    <app-text  appMoveableObject [id]="'3'" [sensor]="'Desktop Resolution'" appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
+
+
+    <app-text  appMoveableObject [id]="'4'" [sensor]="'Vertical Refresh Rate'" appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
+
+
+    <app-text  appMoveableObject [id]="'5'" [sensor]="'RTSS FPS'" appFontstyle  [color]="'white'" [fontSize]="'30px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
+
+
+    <app-text  appMoveableObject [id]="'6'" [sensor]=""  appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'">d:</app-text>
+    <app-text  appMoveableObject [id]="'7'" [sensor]="'NIC3 Download Rate'" appFontstyle  [color]="'yellow'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
+
+    <app-text  appMoveableObject [id]="'8'" [sensor]=""  appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'">u:</app-text>
+    <app-text  appMoveableObject [id]="'9'" [sensor]="'NIC3 Upload Rate'" appFontstyle  [color]="'aqua'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
+    
+    <app-text  appMoveableObject [id]="'10'"  [sensor]="'Master Volume'" appFontstyle  [color]="'white'" [fontSize]="'18px'" [fontFamily]="'Unispace, sans-serif'"></app-text>
+     
+
+
+    <app-gauge  appMoveableObject [id]="'11'" [sensor]="'Master Volume'" [min]="'0'" [max]="'100'" [images]="'assets/gauges/All/images.json'"></app-gauge>
+
+
 <div>
     <img src="assets/bg.gif" alt="" class="bg-layout">
     <img src="assets/Back_shiftx_Yellow.png" alt="" class="bg-layout">

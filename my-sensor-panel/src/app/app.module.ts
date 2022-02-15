@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import { NgApexchartsModule } from "ng-apexcharts";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //components
@@ -13,7 +12,7 @@ import { TextComponent } from './components/text/text.component';
 
 //directives
 import { FontStyleDirective } from './directives/fontstyle.directive';
-import { NewGaugeComponent } from './components/new-gauge/new-gauge.component';
+import { MoveableObjectDirective } from './directives/moveable-object.directive';
 
 
 @NgModule({
@@ -23,12 +22,11 @@ import { NewGaugeComponent } from './components/new-gauge/new-gauge.component';
     GaugeComponent,
     TextComponent,
     FontStyleDirective,
-    NewGaugeComponent,
+    MoveableObjectDirective,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    NgApexchartsModule,
     BrowserAnimationsModule,
     DragDropModule
   ],

@@ -1,26 +1,10 @@
 import { CdkDragMove, CdkDragRelease, DragDrop, DragRef } from '@angular/cdk/drag-drop';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Coordinates } from 'src/app/interfaces/Coordinates';
+import { DataService } from 'src/app/services/data.service';
 import { LocationsService } from 'src/app/services/locations.service';
-
-//chaqrt example stuff
-import {
-  ApexNonAxisChartSeries,
-  ApexPlotOptions,
-  ApexChart,
-  ApexFill,
-  ChartComponent,
-  ApexStroke
-} from "ng-apexcharts";
-
-export type ChartOptions = {
-  series: ApexNonAxisChartSeries;
-  chart: ApexChart;
-  labels: string[];
-  plotOptions: ApexPlotOptions;
-  fill: ApexFill;
-  stroke: ApexStroke;
-};
 
 @Component({
   selector: 'app-gauge',
@@ -29,88 +13,41 @@ export type ChartOptions = {
 })
 export class GaugeComponent implements OnInit {
   @ViewChild('moveableGauge') GaugeComponent!:ElementRef
-  deltaX:number=0
-  deltaY:number=0;
   @Input() id:any = null;
+  @Input() sensor:any = null
+  @Input() images:any = null
+  @Input() min:any = null
+  @Input() max:any = null
 
-
-  //chart example stuff
+  dataSubscription:Subscription = new Subscription();
+  imageSubscription:Subscription = new Subscription();
   
-  public chartOptions: Partial<ChartOptions>;
+    deltaX:number=0
+    deltaY:number=0;
+    value:any;
+    src:any;
+    listOfImages:any
 
-  constructor(public locationsService:LocationsService,private dragDropService: DragDrop) {
-    this.chartOptions = {
-      series: [100],
-      chart: {
-        height: 145,
-          width:145,
-        type: "radialBar",
-        offsetY: -10
-      },
-      
-      plotOptions: {
-        radialBar: {
-          startAngle: -135,
-          endAngle: 135,
-          
-          track: {
-            background: "#fff",
-            strokeWidth: "67%",
-            margin: 0, // margin is in pixels
-            opacity:0,
-            dropShadow: {
-              enabled: false,
-              top: -3,
-              left: 0,
-              blur: 4,
-              opacity: 0
-            }
-          },
-          dataLabels: {
-            
-            name: {
-              fontFamily: "Righteous",
-              fontSize: "64px",
-              color: "#FFFFFF",
-              offsetY: 120
-            },
-            value: {
-              offsetY: -10,
-              fontSize: "18px",
-              color: "#FFFFFF",
-              formatter: function(val) {
-                return val + "%";
-              }
-            }
-          }
-        }
-      },
-      
-      
-      fill: {
-        type: "gradient",
-        colors:["#C14848"],
-        gradient: {
-          shade: "dark",
-          type: "verti",
-          shadeIntensity: 0.5,
-          gradientToColors: ["#14ECF3"],
-          inverseColors: true,
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [0, 100]
-        }
-      },
-      stroke: {
-        dashArray: 4
-      },
-      labels: [""]
-    };
-   }
+
+  constructor(private cd: ChangeDetectorRef,public locationsService:LocationsService,private dragDropService: DragDrop, public dataService:DataService, private httpClient:HttpClient) { }
 
   ngOnInit(): void {
-  }
+    this.value = ""
+    this.max = Number(this.max)
+    this.min = Number(this.min)
 
+    this.dataSubscription = this.dataService.finalData.asObservable().subscribe(x=>{
+      if (this.sensor){
+        this.value = Number(x[this.sensor].value)
+      this.update();
+      }
+    })
+
+    this.imageSubscription = this.httpClient.get(this.images).subscribe((data: any) => {
+      this.listOfImages = data;
+    });
+  }
+  
   ngAfterViewInit(){
     let dragRef:DragRef = this.dragDropService.createDrag(this.GaugeComponent);
     if (this.locationsService.locations[this.id]){
@@ -146,5 +83,36 @@ export class GaugeComponent implements OnInit {
     this.deltaY = $event.distance.y
     // console.log($event.distance)
   }
+
+  update(){
+    this.updateImage()
+    this.cd.detectChanges();
+  }
+
+  updateImage(){
+    if (this.listOfImages){
+      let percentage = (this.value - this.min)/ (this.max - this.min)*100
+      for (let index = 0; index < this.listOfImages.length; index++) {
+        const element = this.listOfImages[index];
+        let lowerBound = this.max/this.listOfImages.length*index
+        let upperBound = (this.max/this.listOfImages.length)*(index+1)
+        if (percentage >= lowerBound  && percentage <= upperBound && this.src != element){
+          //set the image and break
+          this.src = element
+          break
+        }
+        else{
+          //continue looking for correct image
+        }
+        
+      }
+    }
+   
+  }
+
+  ngOnDestroy(){
+    this.dataSubscription.unsubscribe()
+  }
+
 
 }

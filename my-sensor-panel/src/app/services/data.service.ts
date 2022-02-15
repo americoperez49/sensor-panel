@@ -75,18 +75,33 @@ export class DataService {
       for (let index = 1; index < splitData.length-1; index++) {
         //split the data into value/units and feed into an object
         const element:String = splitData[index].split("|")[1];
-        let splitValue_And_Units:String[] = element.split("@")
-        let value =(splitValue_And_Units[0]);
-        let units=splitValue_And_Units[1] != undefined? splitValue_And_Units[1]:"";
+        let splitValue_And_Units:String[] = element.split(" ")
+        var value;
+        var units=""
+        if (splitValue_And_Units.length>1){
+          units=splitValue_And_Units[splitValue_And_Units.length-1] as string
+        }
+        else{
+          value = splitValue_And_Units[0]
+          units = ""
+        }
+        for (let index = 0; index < splitValue_And_Units.length-1; index++) {
+          const element = splitValue_And_Units[index];
+          value += element as any + " ";
+          console.log()
+        }
+       
+        
         // console.log(value + " " + units)
 
         this.finalObject[this.sensorNames[index-1]] ={
           "value":value,
           "units":units
         }
+        value = ""
+        units=""
         
       }
-      delay(500)
       // console.log("\n")
       this.finalData.next(this.finalObject);
   }

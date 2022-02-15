@@ -1,6 +1,4 @@
-import { Component, ElementRef, OnInit,QueryList,ViewChildren } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { Coordinates } from 'src/app/interfaces/Coordinates';
+import { Component, OnInit,QueryList,ViewChildren } from '@angular/core';
 import { LocationsService } from 'src/app/services/locations.service';
 import { dataObject } from "../../../interfaces/dataObject";
 
